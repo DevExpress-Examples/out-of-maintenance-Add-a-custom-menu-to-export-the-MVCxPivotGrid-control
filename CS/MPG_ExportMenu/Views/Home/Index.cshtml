@@ -1,0 +1,82 @@
+@{
+    ViewBag.Title = "Export Menu";
+}
+
+<script type="text/javascript">
+    function onMenuItemClick(s, e) {
+        var $exportFormat = $('#exportCommand');
+        $exportFormat.val(e.item.name);
+        $('form').submit();
+        window.setTimeout(function () {
+            $exportFormat.val("");
+        }, 0);
+    }
+</script>
+
+@Html.DevExpress().Menu(settings => {
+    settings.Name = "menu";
+    settings.Width = Unit.Parse("100%");
+    settings.ShowPopOutImages = DefaultBoolean.True;
+    settings.RootItemSubMenuOffset.LastItemX = 8;
+
+    settings.SettingsAdaptivity.Enabled = true;
+    settings.SettingsAdaptivity.EnableAutoHideRootItems = false;
+    settings.SettingsAdaptivity.EnableCollapseRootItemsToIcons = true;
+    settings.SettingsAdaptivity.CollapseRootItemsToIconsAtWindowInnerWidth = 1200;
+    settings.Styles.Item.CssClass = "dxm-menuItem";
+    settings.Styles.SubMenu.CssClass = "subMenu";
+    settings.Items.Add(item => {
+        item.Name = "XlsWysiwyg";
+        item.Text = "Export to XLS(WYSIWYG)";
+        item.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttoxls32x32;
+    });
+    settings.Items.Add(item => {
+        item.Name = "XlsDataAware";
+        item.Text = "Export to XLS(Data Aware)";
+        item.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttoxls32x32gray;
+    });
+    settings.Items.Add(item => {
+        item.Name = "XlsxWysiwyg";
+        item.Text = "Export to XLSX(WYSIWYG)";
+        item.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttoxlsx32x32;
+    });
+    settings.Items.Add(item => {
+        item.Name = "XlsxDataAware";
+        item.Text = "Export to XLSX(Data Aware)";
+        item.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttoxlsx32x32gray;
+    });
+    settings.Items.Add(item => {
+        item.Name = "Csv";
+        item.Text = "Export to CSV";
+        item.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttocsv32x32;
+    });
+    settings.Items.Add(item => {
+        item.Name = "Pdf";
+        item.Text = "Export to PDF";
+        item.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttopdf32x32;
+    });
+    settings.Items.Add(item => {
+        item.Name = "Rtf";
+        item.Text = "Export to RTF";
+        item.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttortf32x32;
+    });
+    settings.ClientSideEvents.ItemClick = "onMenuItemClick";
+}).GetHtml()
+
+@using (Html.BeginForm("ExportTo", "Home")) {
+    @Html.Hidden("exportCommand")
+    @Html.Action("PivotGridPartial");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
