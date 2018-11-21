@@ -60,6 +60,10 @@ On the server side, the ExportTo action is used to export the pivot grid to diff
 
 
 ```cs
+public ActionResult ExportTo(string exportCommand) {
+    var settings = CreatePivotGridSettings();
+    var data = NwindModel.GetInvoices();
+
     switch (exportCommand) {
         case "XlsWysiwyg":
             return PivotGridExtension.ExportToXls(settings,data, 
