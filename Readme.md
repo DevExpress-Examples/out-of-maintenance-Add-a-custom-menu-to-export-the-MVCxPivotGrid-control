@@ -1,8 +1,8 @@
 # Add a custom menu to export the MVCxPivotGrid control
  
-<p>This example demonstrates how to create a custom menu that allows exporting MVCxPivotGrid to different formats and how to process the menu click event on the client and server sides.</p>
+This example demonstrates how to create a custom menu that allows exporting MVCxPivotGrid to different formats and how to process the menu click event on the client and server sides.
  
-<p>The MVCxPivotGrid control does not provide a build in a toolbar. Thus, it is necessary to create a toolbar manually by using the <a href="https://docs.devexpress.com/AspNet/9003/asp.net-mvc-extensions/site-navigation-and-layout/menu/overview-menu">Menu</a> extension</p>
+The MVCxPivotGrid control does not provide a build in a toolbar. Thus, it is necessary to create a toolbar manually by using the <a href="https://docs.devexpress.com/AspNet/9003/asp.net-mvc-extensions/site-navigation-and-layout/menu/overview-menu">Menu</a> extension.
  
 
 ```cs
@@ -35,19 +35,16 @@
 ```
 
  
-<p>It is necessary to include the pivot grid extension into the form to properly apply control state during export</p>
-
-
+It is necessary to include the pivot grid extension into the form to properly apply control state during export
 ```cs
 @using (Html.BeginForm("ExportTo", "Home")) {
     @Html.Hidden("exportCommand")
     @Html.Action("PivotGridPartial")
 }
 
+```
 
-``` 
-
-<p> On the client side, the following script is used to write information about the clicked item to the hidden exportCommand control and to submit the form.</p>
+On the client side, the following script is used to write information about the clicked item to the hidden exportCommand control and to submit the form.
 ```js
 function onMenuItemClick(s, e) {
 	var $exportFormat = $('#exportCommand');
@@ -59,7 +56,7 @@ function onMenuItemClick(s, e) {
 }
 ```
  
-<p>On the server side, the ExportTo action is used to export the pivot grid to different formats. The value of the exportCommand control is passed there as a parameter.</p>
+On the server side, the ExportTo action is used to export the pivot grid to different formats. The value of the exportCommand control is passed there as a parameter.
 
 
 ```cs
@@ -72,4 +69,4 @@ function onMenuItemClick(s, e) {
             ...
 ```
  
-<p>This example is built using MVCxPivotGrid control version 18.2.3 and MVC5 however, it is possible to use the same approach in the earlier control versions.</p>
+This example is built using MVCxPivotGrid control version 18.2.3 and MVC5 however, it is possible to use the same approach in the earlier control versions.
