@@ -50,18 +50,16 @@ namespace MPG_ExportMenu.Controllers
 
         private static PivotGridSettings CreatePivotGridSettings() {
             PivotGridSettings settings = new PivotGridSettings();
+            settings.OptionsData.DataProcessingEngine = PivotDataProcessingEngine.Optimized;
             settings.Name = "pivotGrid";
             settings.CallbackRouteValues = new { Controller = "Home", Action = "PivotGridPartial" };
             settings.OptionsView.HorizontalScrollBarMode =  DevExpress.Web.ScrollBarMode.Auto;
             settings.OptionsData.AutoExpandGroups = DevExpress.Utils.DefaultBoolean.False;
             settings.Width = new System.Web.UI.WebControls.Unit(100, System.Web.UI.WebControls.UnitType.Percentage);
-            settings.Fields.Add("Country", PivotArea.ColumnArea);
-            settings.Fields.Add("City", PivotArea.ColumnArea);
-            settings.Fields.Add(field => {
-                field.Area = PivotArea.DataArea;
-                field.FieldName = "ExtendedPrice";
-            });
-            settings.Fields.Add("ProductName", PivotArea.RowArea);
+            settings.Fields.AddDataSourceColumn("Country", PivotArea.ColumnArea);
+            settings.Fields.AddDataSourceColumn("City", PivotArea.ColumnArea);
+            settings.Fields.AddDataSourceColumn("ExtendedPrice", PivotArea.DataArea);
+            settings.Fields.AddDataSourceColumn("ProductName", PivotArea.RowArea);
 
             return settings;
         }
