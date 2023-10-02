@@ -1,1 +1,0 @@
-<%@ Application Codebehind="Global.asax.cs" Inherits="MPG_ExportMenu.MvcApplication" Language="C#" %>
